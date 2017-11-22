@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Home Page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="index.css">
 
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
@@ -9,9 +10,68 @@
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
-  </head>
+    <title>Schoodle</title>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Schoodle</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-  <body>
-    <h1>Hello World!</h1>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Link</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Disabled</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="jumbotron">
+<h2>Need To Meet - Find a time that works for everyone!! </h2>
+</div>
+<form id= "event">
+  <div class="form-group">
+    <label for="eventDetails">Enter your event title</label>
+    <textarea type="text" class="form-control" id="eventDetails" placeholder="What's your Event about?">
+    </textarea>
+  </div>
+  <button id= "createEventButton" type="submit" class="btn btn-primary">Submit</button>
+</form>
+<center><img align="middle" src="public/images/calendar-image.gif" id="calender"></center>
+<div class="form-group">
+    <section class="new-event">
+      <h2>Please fill in the details</h2>
+      <form action = "events" method ="POST">
+        <label>Event Title</label>
+        <textarea id="title" name="text" placeholder="(data from the title field automatically)"></textarea>
+        <label>Event Location</label>
+        <textarea id="location" name="text"></textarea>
+        <label>Event Description</label>
+        <textarea id="description" name ="text"></textarea>
+        <label>Enter your Email ID</label>
+        <input type="email" name="email_id">
+        <button>Choose Availability</button>
+      </form>
+    </section>
+  </div>
   </body>
 </html>
