@@ -6,7 +6,7 @@ exports.up = function(knex, Promise) {
     table.string('event_location');
     table.string('event_description');
     table.string('event_slug');
-    table.integer('creator_id');
+    table.integer('creator_id').references('user_id').inTable('users');
   });
 };
 
