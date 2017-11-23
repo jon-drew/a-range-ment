@@ -1,7 +1,7 @@
 
 exports.up = function(knex, Promise) {
   return knex.schema.createTableIfNotExists('events', function (table) {
-    table.increments('event_id');
+    table.increments('event_id').primary();
     table.string('event_title');
     table.string('event_location');
     table.string('event_description');
