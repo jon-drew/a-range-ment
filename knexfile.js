@@ -30,6 +30,7 @@ module.exports = {
     },
     migrations: {
       tableName: 'users'
+
     }
   }
 
