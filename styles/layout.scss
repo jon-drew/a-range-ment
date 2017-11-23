@@ -1,6 +1,7 @@
 #event{
   margin-left:70px;
   margin-right:70px;
+  line-height: 2em;
 }
 
 #createEventButton{
@@ -27,4 +28,16 @@
 
 #background_img {
   background-image: url("");
+}
+
+#add_time{
+  margin-left: 30px;
+}
+
+#datelabel1{
+  margin-left: 30px;
+}
+
+#event_details{
+  float:right;
 }

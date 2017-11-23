@@ -1,11 +1,68 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 $(() => {
   $.ajax({
     method: "GET",
     url: "/api/users"
   }).done((users) => {
-    for(user of users) {
-      $("<div>").text(user.user_email).appendTo($("body"));
-    }
+    // for(user of users) {
+    //   $("<div>").text(user.user_email).appendTo($("body"));
+    // }
   });;
 });
 
@@ -17,9 +74,16 @@ $(document).ready(function(){
       alert("Title can't be empty");
     }else {
      $( "#calender" ).replaceWith( $("#event_detail_section").css("display", "inline") );
-      $("#create_event_button").hide();
-     $('#invitee_name').focus();
+     $('#event').animate({
+    'marginLeft' : "+=410px"
+  });
+    $("#create_event_button").hide();
+    $('#invitee_name').focus();
    }
     });
+  $( "#add_time" ).click(function() {
+  $( "#datetimepicker1" ).data("DateTimePicker").clear();
+  $( "#datetimepicker2" ).data("DateTimePicker").clear();
+});
   });
 
