@@ -1,3 +1,10 @@
+
+
+
+
+$("#start_date").on("submit",function(event){
+
+ event.preventDefault();
 $(() => {
   $.ajax({
     method: "GET",
@@ -9,7 +16,24 @@ $(() => {
   });;
 });
 
-$(document).ready(function(){
+$(() => {
+  $.ajax({
+    method: "GET",
+    url: "/api/events"
+  }).done((events) => {
+    for(user of events) {
+      $("<div>").text(user.event_title).appendTo($("body"));
+    }
+  });
+});
+
+
+});
+
+/*$(document).ready(function(){
+
+
+
   $("#create_event_button").click(function(){
     const text = $("#title").val();
     console.log(text);
@@ -21,5 +45,11 @@ $(document).ready(function(){
      $('#invitee_name').focus();
    }
     });
-  });
+
+
+
+
+
+
+  });*/
 
