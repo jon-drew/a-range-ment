@@ -44,7 +44,22 @@ $(document).ready(function(){
    }
     });
   $( "#add_time" ).click(function() {
-  $( "#datetimepicker1" ).data("DateTimePicker").clear();
-  $( "#datetimepicker2" ).data("DateTimePicker").clear();
+    const start_time = $("#start_date").val();
+    const end_time = $("#end_date").val();
+
+    const table_row = `<tr>
+                         <td>${start_time}</td>
+                         <td>${end_time}</td>
+                         <td><button type="button" class="btn btn-warning delete-button">Delete</button></td>
+                       </tr>`;
+
+    $("#table-body").append(table_row);
+    $("#time-table").show();
+    $( "#datetimepicker1" ).data("DateTimePicker").clear();
+    $( "#datetimepicker2" ).data("DateTimePicker").clear();
 });
+    $(document).on('click', '.delete-button', function() {
+    $(this).closest('tr').remove();
+});
+
   });
