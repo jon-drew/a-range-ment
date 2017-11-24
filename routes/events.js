@@ -24,7 +24,7 @@ module.exports = (knex) => {
     event_location: req.body.location,
     event_description: req.body.event_description,
     event_slug: "/" + event_id,
-    creator_id: getUserByEmail(invitee_email)
+    creator_id: getUserByEmail(creator_email)
   })
       .from("events")
       .then((results) => {

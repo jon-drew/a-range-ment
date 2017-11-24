@@ -1,5 +1,5 @@
 
-
+// Shows contents of users table on left side
 $(() => {
   $.ajax({
     method: "GET",
@@ -11,6 +11,7 @@ $(() => {
   });;
 });
 
+// Shows contents of events table on left side of screen
 $(() => {
   $.ajax({
     method: "GET",
@@ -21,10 +22,6 @@ $(() => {
     }
   });
 });
-
-
-
-
 
 
 $(document).ready(function(){
@@ -39,7 +36,7 @@ $(document).ready(function(){
     'marginLeft' : "+=410px"
   });
     $("#create_event_button").hide();
-    $('#invitee_name').focus();
+    $('#creator_name').focus();
    }
     });
   $( "#add_time" ).click(function() {
@@ -57,8 +54,9 @@ $(document).ready(function(){
     $( "#datetimepicker1" ).data("DateTimePicker").clear();
     $( "#datetimepicker2" ).data("DateTimePicker").clear();
 });
-    $(document).on('click', '.delete-button', function() {
-    $(this).closest('tr').remove();
+
+$(document).on('click', '.delete-button', function() {
+  $(this).closest('tr').remove();
 });
 
   });
