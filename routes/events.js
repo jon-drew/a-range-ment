@@ -10,6 +10,11 @@ function getUserByEmail(email) {
     .first();
 }
 
+function generateEventID() {
+  return
+}
+
+
 module.exports = (knex) => {
 
   router.post("/events", function(req, res) {
