@@ -2,8 +2,6 @@ $(document).ready(function(){
 
 // Posts contents of form to database
 $('#event_details').submit(function(event){
-  alert("Button clicked")
-  console.log('blah', this)
   event.preventDefault();
   let newEvent = $(this).serialize();
   console.log(newEvent);
@@ -18,11 +16,11 @@ $('#event_details').submit(function(event){
 // Shows contents of users table on bottom of screen
 $(() => {
   $.ajax({
-    method: "GET",
+    method: "POST",
     url: "/api/events"
-  }).done((users) => {
-    for(user of users) {
-      $("<div>").text(user.user_email).appendTo($("body"));
+  }).done((events) => {
+    for(event of events) {
+      $("<div>").text(event.event_title).appendTo($("body"));
     }
   });
 });
