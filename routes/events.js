@@ -10,22 +10,24 @@ function getUserByEmail(email) {
     .first();
 }
 
-function generateEventID() {
-  return
-}
-
 
 module.exports = (knex) => {
 
-  router.post("/events", function(req, res) {
+  router.get("/api/events", function(req, res) {
+    console.log(req.body)
+    // return knex('events').insert({
+    //   event_id = 1,
+    //   event_title: "hello world", //req.body.title,
+    //   event_location: "here", //req.body.location,
+    //   event_description: "awesome", //req.body.event_description,
+    //   event_slug: "/1" //"/" + event_id,
+    //   creator_id: "22" //getUserByEmail(creator_email)
+    // })
+  });
 
-  return knex('events').insert({
-    event_title: req.body.title,
-    event_location: req.body.location,
-    event_description: req.body.event_description,
-    event_slug: "/" + event_id,
-    creator_id: getUserByEmail(creator_email)
-  })
+  router.get("/", (req, res) => {
+    knex
+      .select("*")
       .from("events")
       .then((results) => {
         res.json(results);
@@ -34,3 +36,4 @@ module.exports = (knex) => {
 
   return router;
 }
+

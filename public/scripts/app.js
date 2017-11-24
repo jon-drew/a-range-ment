@@ -1,30 +1,33 @@
+$(document).ready(function(){
 
-// Shows contents of users table on left side
-$(() => {
-  $.ajax({
-    method: "GET",
-    url: "/api/users"
-  }).done((users) => {
-    for(user of users) {
-      $("<div>").text(user.user_email).appendTo($("body"));
-    }
-  });;
+// Posts contents of form to database
+$('#event_details').submit(function(event){
+  alert("Button clicked")
+  console.log('blah', this)
+  event.preventDefault();
+  let newEvent = $(this).serialize();
+  console.log(newEvent);
+  $.ajax( {
+    url: '/api/events',
+    method: 'POST',
+    datatype: 'string',
+    data: newEvent
+  });
 });
 
-// Shows contents of events table on left side of screen
+// Shows contents of users table on bottom of screen
 $(() => {
   $.ajax({
     method: "GET",
     url: "/api/events"
-  }).done((events) => {
-    for(user of events) {
-      $("<div>").text(user.event_title).appendTo($("body"));
+  }).done((users) => {
+    for(user of users) {
+      $("<div>").text(user.user_email).appendTo($("body"));
     }
   });
 });
 
 
-$(document).ready(function(){
   $("#create_event_button").click(function(){
     const text = $("#title").val();
     console.log(text);
