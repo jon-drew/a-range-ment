@@ -2,29 +2,14 @@ $(document).ready(function(){
 
 // Posts contents of form to database
 $('#event_details').submit(function(event){
- event.preventDefault();
- let newEvent = $(this).serialize();
- console.log(newEvent);
- $.ajax( {
-   url: '/api/events',
-   method: 'POST',
-   datatype: newEvent,
-   data: newEvent
- });
+  event.preventDefault();
+  let newEvent = $(this).serialize();
+  $.ajax({
+    url: '/api/events',
+    method: 'POST',
+    data: newEvent
+  });
 });
-
-// Shows contents of users table on bottom of screen
-$(() => {
- $.ajax({
-   method: "GET",
-   url: "/api/events"
- }).done((events) => {
-   for(event of events) {
-     $("<div>").text(event.event_title).appendTo($("body"));
-   }
- });
-});
-
 
  $("#create_event_button").click(function(){
    const $formContainer = $(this).closest(".event_details-container");
