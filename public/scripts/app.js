@@ -8,7 +8,7 @@ $('#event_details').submit(function(event){
  $.ajax( {
    url: '/api/events',
    method: 'POST',
-   datatype: 'string',
+   datatype: newEvent,
    data: newEvent
  });
 });
@@ -16,7 +16,7 @@ $('#event_details').submit(function(event){
 // Shows contents of users table on bottom of screen
 $(() => {
  $.ajax({
-   method: "POST",
+   method: "GET",
    url: "/api/events"
  }).done((events) => {
    for(event of events) {
