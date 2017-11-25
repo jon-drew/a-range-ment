@@ -3,13 +3,12 @@ $(document).ready(function(){
 // Posts contents of form to database
 $('#event_details').submit(function(event){
  event.preventDefault();
- let newEvent = {};
+ let newEvent = $(this).serialize();
  console.log(newEvent);
- console.log($("#creator_name").val());
  $.ajax( {
    url: '/api/events',
    method: 'POST',
-   datatype: newEvent,
+   datatype: 'string',
    data: newEvent
  });
 });
@@ -17,7 +16,7 @@ $('#event_details').submit(function(event){
 // Shows contents of users table on bottom of screen
 $(() => {
  $.ajax({
-   method: "GET",
+   method: "POST",
    url: "/api/events"
  }).done((events) => {
    for(event of events) {
