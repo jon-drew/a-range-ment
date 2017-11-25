@@ -23,7 +23,6 @@ module.exports = (knex) => {
   });
 
   router.post("/", function(req, res) {
-    console.log(req.body);
     return knex('events').insert({
       event_id: 25,
       event_title: req.body.event_title,
