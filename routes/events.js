@@ -13,25 +13,27 @@ function getUserByEmail(email) {
 
 module.exports = (knex) => {
 
+  router.get("/", (req, res) => {
+    knex
+      .select("*")
+      .from("events")
+      .then((results) => {
+        res.json(results);
+    });
+  });
+
   router.post("/", function(req, res) {
     console.log(req.body);
     return knex('events').insert({
-      event_title: "hello world", //req.body.title,
-      event_location: "here", //req.body.location,
-      event_description: "awesome", //req.body.event_description,
-      event_slug: "/1" ,//"/" + event_id,
-      creator_id: "22" //getUserByEmail(creator_email)
+      event_id: 25,
+      event_title: req.body.event_title,
+      event_location: req.body.event_location,
+      event_description: req.body.event_description,
+      event_slug: "/" + event_id,
+      creator_id: getUserByEmail(creator_email)
     })
   });
 
-  // router.get("/", (req, res) => {
-  //   knex
-  //     .select("*")
-  //     .from("events")
-  //     .then((results) => {
-  //       res.json(results);
-  //   });
-  // });
 
   return router;
 }

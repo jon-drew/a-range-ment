@@ -5,18 +5,19 @@ $('#event_details').submit(function(event){
   event.preventDefault();
   let newEvent = $(this).serialize();
   console.log(newEvent);
-  $.ajax( {
-    url: '/api/events',
-    method: 'POST',
-    datatype: 'string',
-    data: newEvent
-  });
+  console.log ($(".event_title").text())
+  // $.ajax( {
+  //   url: '/api/events',
+  //   method: 'POST',
+  //   datatype: 'string',
+  //   data: newEvent
+  // });
 });
 
-// Shows contents of users table on bottom of screen
+
 $(() => {
   $.ajax({
-    method: "POST",
+    method: "GET",
     url: "/api/events"
   }).done((events) => {
     for(event of events) {
@@ -24,7 +25,6 @@ $(() => {
     }
   });
 });
-
 
   $("#create_event_button").click(function(){
     const text = $("#title").val();
