@@ -3,16 +3,16 @@
 const express = require('express');
 const router  = express.Router();
 
-function getUserByEmail(email) {
-  return knex.select()
-    .where({ user_email: email })
-    .from('users')
-    .first();
-}
 
 
 module.exports = (knex) => {
 
+function getUserByEmail(email) {
+  return knex.select('user_id')
+    .where({ user_email: email })
+    .from('users')
+    .first();
+}
   router.get("/", (req, res) => {
     knex
       .select("*")
@@ -28,8 +28,8 @@ module.exports = (knex) => {
       event_title: req.body.event_title,
       event_location: req.body.event_location,
       event_description: req.body.event_description,
-      event_slug: "/" + event_id,
-      creator_id: getUserByEmail(creator_email)
+      event_slug: "/" + 25,
+      creator_id: getUserByEmail('creator_email')
     })
   });
 
