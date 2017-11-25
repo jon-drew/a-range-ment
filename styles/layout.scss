@@ -10,34 +10,60 @@
 
 #calender {
  align: middle;
+
+ .calendar-image {
+  border-radius: 50%;
+  background-image: url("images/calendar-image.gif")
+ }
 }
 
-#event_details{
+.event_details-container {
+  background-image: url("/images/lined_paper.png");
+  // height: calc(100vh - 231px);
+}
+
+.event-details{
   margin-left:70px;
   margin-right:70px;
+  // float:right;
+}
+
+.event_details-container.expanded {
+  display: flex;
+  flex-direction: row;
+  .event-details, .event-image {
+    flex-direction: column;
+    width: 50%;
+  }
 }
 
 #details{
   margin-left:70px;
   margin-right:70px;
+
 }
 
 #event_detail_section{
   display:none;
 }
 
-#background_img {
-  background-image: url("/images/lined_paper.png");
+// #add_time{
+//   margin-left: 30px;
+// }
+
+.jumbotron {
+  margin-bottom: 0;
 }
 
-#add_time{
-  margin-left: 30px;
-}
-
-#datelabel1{
-  margin-left: 30px;
-}
-
-#event_details{
-  float:right;
+.form-inline {
+  display: flex;
+  flex-direction: row;
+  .form-group {
+    flex-direction: column;
+    margin-right: 10px;
+    &:last-child {
+      align-self: flex-end;
+      margin-right: 0;
+    }
+  }
 }
