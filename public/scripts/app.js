@@ -27,6 +27,9 @@ $(() => {
 
 
   $("#create_event_button").click(function(){
+    const $formContainer = $(this).closest(".event_details-container");
+    console.log("###EVENT FORM", $formContainer.length);
+    $formContainer.addClass("expanded");
     const text = $("#title").val();
     console.log(text);
     if (text === null || text === '') {
@@ -43,7 +46,19 @@ $(() => {
   $( "#add_time" ).click(function() {
     const start_time = $("#start_date").val();
     const end_time = $("#end_date").val();
+    const current_time = moment().format('lLT');
 
+    console.log(start_time);
+    console.log(end_time);
+    console.log(current_time);
+
+    if (start_time < current_time) {
+      alert("Start Time can not be in the past.");
+    } else if (end_time < current_time) {
+      alert("End Time can not be in the past.");
+    } else if (end_time < start_time) {
+      alert("End Time can not be earlier than Start Time.");
+    } else {
     const table_row = `<tr>
                          <td>${start_time}</td>
                          <td>${end_time}</td>
@@ -54,10 +69,11 @@ $(() => {
     $("#time-table").show();
     $( "#datetimepicker1" ).data("DateTimePicker").clear();
     $( "#datetimepicker2" ).data("DateTimePicker").clear();
+   }
 });
 
-$(document).on('click', '.delete-button', function() {
-  $(this).closest('tr').remove();
-});
-
+  $(document).on('click', '.delete-button', function() {
+    $(this).closest('tr').remove();
   });
+
+});

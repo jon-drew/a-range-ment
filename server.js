@@ -44,6 +44,57 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+// Post request
+
+// http://localhost:8080/event/some-random-event
+
+// app.post("/event", ())
+
+app.get("/events", (req, res) => {
+
+
+  let templateVars = {
+    event_title: "Birthday Party",
+    invitor_name: "Sagar Sharma",
+    invitor_email: "sagar.s2502@gmail.com",
+    event_description: "Guddu Birthday Party!!!",
+    event_location: "Moga, India",
+    time_slots: [{start_time: '2018-01-11 10:00 PM', end_time: '2018-01-11 11:00 PM'},
+                 {start_time: '2018-01-11 09:00 AM', end_time: '2018-01-11 10:00 AM'},
+                 {start_time: '2018-01-11 03:00 PM', end_time: '2018-01-11 04:00 PM'}]
+  }
+  res.render("participants", templateVars);
+});
+
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
+
+
+
+/*
+var nodemailer = require('nodemailer');
+
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'youremail@gmail.com',
+    pass: 'yourpassword'
+  }
+});
+
+var mailOptions = {
+  from: 'youremail@gmail.com',
+  to: 'myfriend@yahoo.com',
+  subject: 'Sending Email using Node.js',
+  text: 'That was easy!'
+};
+
+transporter.sendMail(mailOptions, function(error, info){
+  if (error) {
+    console.log(error);
+  } else {
+    console.log('Email sent: ' + info.response);
+  }
+});
+*/
