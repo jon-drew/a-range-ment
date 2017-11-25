@@ -18,12 +18,12 @@ function getUserByEmail(email) {
     let formOutput = req.body;
 
       knex.insert({
-        event_id: 25,
-        event_title: "Title", //req.body.event_title,
-        event_location: "Location", //req.body.event_location,
-        event_description: "Description", //req.body.event_description,
-        event_slug: "25", //"/" + 25,
-        creator_id: 2 //getUserByEmail('creator_email')
+        event_id: 28,
+        event_title: formOutput.event_title,
+        event_location: formOutput.event_location,
+        event_description:formOutput.event_description,
+        event_slug:"/" + 26,
+        creator_id: 2//getUserByEmail('creator_email')
       })
       .into('events')
       .returning('*')
