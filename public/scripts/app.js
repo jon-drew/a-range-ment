@@ -3,7 +3,6 @@ $(document).ready(function(){
 $('#event_details').submit(function(event){
   event.preventDefault();
   let newEvent = $(this).serialize();
-  console.log($(this));
   $.ajax({
     url: '/api/events',
     method: 'POST',
