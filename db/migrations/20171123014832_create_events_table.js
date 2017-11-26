@@ -7,6 +7,8 @@ exports.up = function(knex, Promise) {
     table.string('event_description');
     table.string('event_slug');
     table.integer('creator_id').references('user_id').inTable('users');
+    table.timestamp('start_datetime');
+    table.timestamp('end_datetime');
   });
 };
 

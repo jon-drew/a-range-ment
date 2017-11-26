@@ -7,20 +7,20 @@ const router  = express.Router();
 
 module.exports = (knex) => {
 
-function getUserByEmail(searchEmail) {
-  let userID = 0;
-  knex.select('user_id')
-    .from('users')
-    .first()
-    .where('user_email', searchEmail)
-    .then((results) => {
-      return userID = results;
-    })
-    .catch((error) => {
-      console.log(error);
-    })
-  return userID
-}
+// function getUserByEmail(searchEmail) {
+//   let userID = 0;
+//   knex.select('user_id')
+//     .from('users')
+//     .first()
+//     .where('user_email', searchEmail)
+//     .then((results) => {
+//       return userID = results;
+//     })
+//     .catch((error) => {
+//       console.log(error);
+//     })
+//   return userID
+// }
 
 function generateRandomNumber() {
   let validChars = ['1','2','3','4','5','6','7','8','9','0']
@@ -31,18 +31,29 @@ function generateRandomNumber() {
 }
 //console.log(getUserByEmail('bob@msn.com'))
 
+function timestampConverter(inputDate) {
+  // Input date in format MM/DD/YYYY (h)h:MM AM
+  let outputDate = '';
+  if (inputDate.length > 18) {
+    outputDate += `${inputDate[6]}${inputDate[7]}${inputDate[8]}${inputDate[9]}-${inputDate[0]}${inputDate[1]}-${inputDate[3]}${inputDate[4]} ${inputDate[11]}${inputDate[12]}${inputDate[13]}${inputDate[14]}${inputDate[15]}:00`
+  } else {
+    outputDate += `${inputDate[6]}${inputDate[7]}${inputDate[8]}${inputDate[9]}-${inputDate[0]}${inputDate[1]}-${inputDate[3]}${inputDate[4]} 0${inputDate[11]}${inputDate[12]}${inputDate[13]}${inputDate[14]}:00`
+  }
+  return outputDate
+}
+
   router.post("/", function(req, res) {
     let formOutput = req.body;
     let event_id = generateRandomNumber();
-    let creator_id = 2 //getUserByEmail(formOutput.creator_email)
-
     knex.insert({
       event_id: event_id,
       event_title: formOutput.event_title,
       event_location: formOutput.event_location,
       event_description:formOutput.event_description,
       event_slug:"/" + event_id,
-      creator_id: creator_id
+      start_datetime: timestampConverter(formOutput.datein),
+      end_datetime: timestampConverter(formOutput.dateout),
+      creator_email: formOutput.creator_email
     })
     .into('events')
     .returning('*')
