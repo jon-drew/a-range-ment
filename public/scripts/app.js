@@ -52,22 +52,22 @@ $('#event_details').submit(function(event){
    });
  
  $( "#add_time" ).click(function() {
-   const start_time = moment($("#start_date").val()).format('LLL');
-   const end_time = moment($("#end_date").val()).format('LLL');
-   const current_time = moment().format('LLL');
+   const start_time = moment($("#start_date").val());
+   const end_time = moment($("#end_date").val());
+   const current_time = moment();
    console.log(start_time);
    console.log(end_time);
    console.log(current_time);
-   if (start_time < current_time) {
+   if (start_time.diff(current_time) < 0) {
      alert("Start Time can not be in the past.");
-   } else if (end_time < current_time) {
+   } else if (end_time.diff(current_time) < 0) {
      alert("End Time can not be in the past.");
-   } else if (end_time < start_time) {
+   } else if (end_time.diff(start_time) < 0) {
      alert("End Time can not be earlier than Start Time.");
    } else {
    const table_row = `<tr class="time-row">
-                        <td id="start-time">${start_time}</td>
-                        <td id="end-time">${end_time}</td>
+                        <td id="start-time">${start_time.format('LLL')}</td>
+                        <td id="end-time">${end_time.format('LLL')}</td>
                         <td><button type="button" class="btn btn-warning delete-button">Delete</button></td>
                       </tr>`;
    $("#table-body").append(table_row);
