@@ -49,11 +49,6 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-// Post request
-
-// http://localhost:8080/event/some-random-event
-
-// app.post("/event", ())
 
 app.get("/event/:slug", (req, res) => {
 
@@ -144,29 +139,3 @@ app.post('/send_confirmation', (req, res) => {
 
 });
 
-/*
-var nodemailer = require('nodemailer');
-
-var transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: 'youremail@gmail.com',
-    pass: 'yourpassword'
-  }
-});
-
-var mailOptions = {
-  from: 'youremail@gmail.com',
-  to: 'myfriend@yahoo.com',
-  subject: 'Sending Email using Node.js',
-  text: 'That was easy!'
-};
-
-transporter.sendMail(mailOptions, function(error, info){
-  if (error) {
-    console.log(error);
-  } else {
-    console.log('Email sent: ' + info.response);
-  }
-});
-*/
