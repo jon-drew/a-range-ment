@@ -14,6 +14,9 @@ const knex        = require("knex")(knexConfig[ENV]);
 const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
 
+const moment = require('moment');
+var nodemailer = require('nodemailer');
+
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
 const eventsRoutes = require("./routes/events");
@@ -52,20 +55,32 @@ app.get("/", (req, res) => {
 
 // app.post("/event", ())
 
-app.get("/events", (req, res) => {
+app.get("/event/:slug", (req, res) => {
 
+  let templateVars = {};
 
-  let templateVars = {
-    event_title: "Birthday Party",
-    invitor_name: "Sagar Sharma",
-    invitor_email: "sagar.s2502@gmail.com",
-    event_description: "Guddu Birthday Party!!!",
-    event_location: "Moga, India",
-    time_slots: [{start_time: '2018-01-11 10:00 PM', end_time: '2018-01-11 11:00 PM'},
-                 {start_time: '2018-01-11 09:00 AM', end_time: '2018-01-11 10:00 AM'},
-                 {start_time: '2018-01-11 03:00 PM', end_time: '2018-01-11 04:00 PM'}]
-  }
-  res.render("participants", templateVars);
+  knex.select()
+      .from("events")
+      .innerJoin('users', 'users.user_id', 'events.creator_id')
+      .innerJoin('timeslots', 'events.event_id', 'timeslots.event_id')
+      .where('event_slug', '=', '/' + req.params.slug)
+      .asCallback(function(err, rows) {
+        console.log(rows);
+        templateVars.event_title = rows[0].event_title;
+        templateVars.event_description = rows[0].event_description;
+        templateVars.event_location = rows[0].event_location;
+        templateVars.invitor_name = rows[0].user_name;
+        templateVars.invitor_email = rows[0].user_email;
+        let time_slots = [];
+        for (var i in rows) {
+          let time_slot = {};
+          time_slot['start_time'] = moment(rows[i]['start']).format('lll');
+          time_slot['end_time'] = moment(rows[i]['end']).format('lll');
+          time_slots.push(time_slot);
+        }
+        templateVars.time_slots = time_slots;
+        res.render("participants", templateVars);
+      });  
 });
 
 app.listen(PORT, () => {
@@ -73,6 +88,61 @@ app.listen(PORT, () => {
 });
 
 
+app.post('/send_confirmation', (req, res) => {
+
+  const formOutput = req.body;
+  console.log(formOutput);
+
+
+  var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'garima.arya1101@gmail.com',
+    pass: '11012502d'
+  }
+  });
+
+  var table = `<table>
+                 <thead>
+                 <tr>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                 </tr>
+                 </thead>
+                 <tbody>`;
+  var table_footer = `</tbody></table>`;
+  for (var t in formOutput.timeslots) {
+
+    var row = `<tr class="time-row">
+          <td>${formOutput.timeslots[t].start_time}</td>
+          <td>${formOutput.timeslots[t].end_time}</td>
+        </tr>`;
+
+    table = table + row;
+  }
+
+  table = table + table_footer;
+
+  var mailOptions = {
+  from: formOutput.participant_email,
+  to: formOutput.invitor_email,
+  subject: 'Your invitation was Accepted!',
+  html: `<h2>This is to confirm that "${formOutput.participant_name}" 
+         accepted your invitation for the event: "${formOutput.event_title}"
+         for the following time slots: <br><br>${table}</h2>` 
+  };
+
+  transporter.sendMail(mailOptions, function(error, info){
+  if (error) {
+    console.log(error);
+  } else {
+    console.log('Email sent: ' + info.response);
+    res.status(200).send(JSON.stringify({result: "You have successfully accepted the invitation. Your invitor has been notified"}));
+  }
+  
+});
+
+});
 
 /*
 var nodemailer = require('nodemailer');
