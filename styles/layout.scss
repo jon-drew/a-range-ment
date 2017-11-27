@@ -17,9 +17,10 @@
  }
 }
 
-.event_details-container {
-  background-image: url("/images/vector.jpg");
-  // height: calc(100vh - 231px);
+// .event_details-container 
+body{
+  background-image: url("/images/IMG_1817.PNG");
+  background-attachment:fixed;
 }
 
 .event-details{
@@ -34,8 +35,8 @@
   .event-details, .event-image {
     flex-direction: column;
     width: 50%;
-   font-family: 'Fjalla One', sans-serif;
-   font-size: 20px; 
+    font-family: 'Fjalla One', sans-serif;
+    font-size: 20px; 
   }
 }
 
@@ -88,6 +89,7 @@
   color: black;
   font-family: 'Fjalla One', sans-serif;
   font-size:20px;
+
 }
 
 .navbar-brand{
