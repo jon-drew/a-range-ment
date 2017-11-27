@@ -10,11 +10,11 @@ exports.seed = function(knex, Promise) {
         .returning('*')
         .then((result) => {
           knex('events').insert([{event_id: 1, event_title: 'Party', event_location: 'My house', event_description:'Time to party',
-                                  event_slug: 1, creator_email: 'bob@msn.com', start_datetime: '2017-11-27 13:00:00', end_datetime: '2017-11-27 13:01:00'},
+                                  event_slug: 1, start_datetime: '2017-11-27 13:00:00', end_datetime: '2017-11-27 13:01:00', creator_email: 'bob@msn.com'},
                                  {event_id: 2, event_title: 'Meeting', event_location: 'The office', event_description:'Time to work',
-                                  event_slug: 2, creator_email: 'alice@gmail.com', start_datetime: '2017-12-27 10:00:00', end_datetime: '2017-11-27 10:30:00'},
+                                  event_slug: 2, start_datetime: '2017-12-27 10:00:00', end_datetime: '2017-11-27 10:30:00', creator_email: 'alice@gmail.com'},
                                  {event_id: 3, event_title: 'Hockey game', event_location: 'Arena', event_description:'Time to play',
-                                  event_slug: 3, creator_email: 'john@hotmail.com', start_datetime: '2017-12-25 09:00:00', end_datetime: '2017-12-25 23:59:00'}
+                                  event_slug: 3, start_datetime: '2017-12-25 09:00:00', end_datetime: '2017-12-25 23:59:00', creator_email: 'john@hotmail.com'}
           ])
         })
         .then((result) => {

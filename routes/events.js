@@ -8,18 +8,17 @@ const router  = express.Router();
 module.exports = (knex) => {
 
 // function getUserByEmail(searchEmail) {
-//   let userID = 0;
 //   knex.select('user_id')
 //     .from('users')
 //     .first()
 //     .where('user_email', searchEmail)
 //     .then((results) => {
-//       return userID = results;
+//       console.log(results.user_id);
 //     })
 //     .catch((error) => {
 //       console.log(error);
 //     })
-//   return userID
+//   //return userID
 // }
 
 function generateRandomNumber() {
@@ -29,6 +28,7 @@ function generateRandomNumber() {
     newID += validChars[Math.floor((Math.random() * 10))]
   } return newID;
 }
+
 //console.log(getUserByEmail('bob@msn.com'))
 
 function timestampConverter(inputDate) {
@@ -49,8 +49,8 @@ function timestampConverter(inputDate) {
       event_id: event_id,
       event_title: formOutput.event_title,
       event_location: formOutput.event_location,
-      event_description:formOutput.event_description,
-      event_slug:"/" + event_id,
+      event_description: formOutput.event_description,
+      event_slug: "/" + event_id,
       start_datetime: timestampConverter(formOutput.datein),
       end_datetime: timestampConverter(formOutput.dateout),
       creator_email: formOutput.creator_email
