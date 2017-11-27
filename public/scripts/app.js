@@ -31,7 +31,7 @@ $('#event_details').submit(function(event){
      }
   });
 });
- 
+
  $("#create_event_button").click(function(){
    const $formContainer = $(this).closest(".event_details-container");
    console.log("###EVENT FORM", $formContainer.length);
@@ -50,7 +50,7 @@ $('#event_details').submit(function(event){
    $('#creator_name').focus();
   }
    });
- 
+
  $( "#add_time" ).click(function() {
    const start_time = moment($("#start_date").val()).format('LLL');
    const end_time = moment($("#end_date").val()).format('LLL');
@@ -58,7 +58,7 @@ $('#event_details').submit(function(event){
    console.log(start_time);
    console.log(end_time);
    console.log(current_time);
-   if (start_time < current_time) {
+   if ('#start_date'.diff(moment()) < 0) {
      alert("Start Time can not be in the past.");
    } else if (end_time < current_time) {
      alert("End Time can not be in the past.");
