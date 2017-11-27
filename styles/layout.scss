@@ -24,8 +24,8 @@ body{
 }
 
 .event-details{
-  margin-left:70px;
-  margin-right:70px;
+  margin-left:30px;
+  margin-right:50px;
   // float:right;
 }
 
@@ -34,15 +34,18 @@ body{
   flex-direction: row;
   .event-details, .event-image {
     flex-direction: column;
-    width: 50%;
+    width: 70%;
     font-family: 'Fjalla One', sans-serif;
     font-size: 20px; 
   }
 }
 
+.event_details-container{
+  margin-left: 0px;
+}
 #details{
-  margin-left:70px;
-  margin-right:70px;
+  margin-left:30px;
+  margin-right:50px;
 
 }
 
@@ -50,9 +53,6 @@ body{
   display:none;
 }
 
-// #add_time{
-//   margin-left: 30px;
-// }
 
 .jumbotron {
   margin-bottom: 0;
@@ -89,6 +89,7 @@ body{
   color: black;
   font-family: 'Fjalla One', sans-serif;
   font-size:20px;
+  margin-top: 10px;
 
 }
 
